@@ -242,15 +242,16 @@ def loops_7():
     This is a hard problem. Use lots of experimentation and draw
     lots of diagrams!
     """
-    the_wedge1 = []
-
-    for i in range(10):
-        row = []
-        for j in range(i - 1):
-            the_wedge1.append(loops_1c(number_of_items=10, symbol=" "))
-        the_wedge1.append(row)
-    print(the_wedge1)
-    return the_wedge1
+    k = 0
+    rows = 5
+    for i in range(1, rows + 1):
+        for space in range(1, (rows - 1) + 1):
+            print(end=" ")
+        while k != (2 * i - 1):
+            print("* ", end="")
+            k = k + 1
+        k = 0
+        print()
 
 
 def lp(some_kind_of_list, exercise_name):
