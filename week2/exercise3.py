@@ -242,16 +242,15 @@ def loops_7():
     This is a hard problem. Use lots of experimentation and draw
     lots of diagrams!
     """
-    k = 0
-    rows = 5
-    for i in range(1, rows + 1):
-        for space in range(1, (rows - 1) + 1):
-            print(end=" ")
-        while k != (2 * i - 1):
-            print("* ", end="")
-            k = k + 1
-        k = 0
-        print()
+    pyramid = []
+    for i in range(5):
+        row = []
+        for j in range(1):
+            starline = '{0}{1}{0}'
+            row.append(starline.format(' '*(5-i-1), '*'*(i*2+1)))
+        pyramid.append(row)
+
+    return pyramid
 
 
 def lp(some_kind_of_list, exercise_name):
