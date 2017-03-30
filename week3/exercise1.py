@@ -71,12 +71,12 @@ def stubborn_asker(low, high):
     message = "give me a number between {low}, and {high}:".format(low=low,
                                                                    high=high)
     while True:
-        input_number = int(raw_input(message))
-        if low < input_number < high:
-            print("Yeah! {} seems about right.".format(input_number))
-            return input_number
+        i_no = int(raw_input(message))
+        if low < i_no < high:
+            print("Yeah! {} seems about right.".format(i_no))
+            return i_no
         else:
-            print("{input} is not between {low} and {high}".format(input=input_number
+            print("{input} is not between {low} and {high}".format(input=i_no,
                                                                    low=low,
                                                                    high=high))
 
@@ -88,7 +88,13 @@ def not_number_rejector(message):
     "six", "8!") then throw it out and ask for an actual number.
     When you do get a number, return it.
     """
-    pass
+    while True:
+        try:
+            input_number = int(raw_input(message))
+            print("Thanks {} looks good.".format(input_number))
+            return input_number
+        except Exception as e:
+            print("Try again ({})".format(e))
 
 
 def super_asker(low, high):
@@ -115,6 +121,6 @@ if __name__ == "__main__":
     print("\nstubborn_asker")
     stubborn_asker(30, 45)
     print("\nnot_number_rejector")
-    not_number_rejector()
+    not_number_rejector("Give me a number:")
     print("\nsuper_asker")
     super_asker(33, 42)
