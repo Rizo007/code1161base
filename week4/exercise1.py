@@ -25,10 +25,13 @@ def success_is_relative():
     TIP: check that there ins't unwanted whitespace or line endings in the
          response. Look into .strip() and see what it does.
     """
-    # this depends on excecution context. Take a look at your CWD and remember
-    # that it changes.
-    # print(path, CWD)
-    pass
+    mode = "r"
+    file_path = CWD + "/week1/pySuccessMessage.json"
+    book_of_success = open(file_path, mode)
+    contents = json.load(book_of_success)
+    in_message = contents("message")
+    print(in_message)
+    book_of_success.close()
 
 
 def get_some_details():
@@ -50,6 +53,7 @@ def get_some_details():
     json_data = open(LOCAL + "/lazyduck.json").read()
 
     data = json.loads(json_data)
+    data["result"][0]["name"]["last"]
     return {"lastName":       None,
             "password":       None,
             "postcodePlusID": None
@@ -88,7 +92,20 @@ def wordy_pyramid():
     ]
     TIP: to add an argument to a URL, use: ?argName=argVal e.g. ?len=
     """
-    pass
+    import requests
+    baseURL = "http://www.setgetgo.com/randomword/get.php?len="
+    pyramid_list = []
+    for i in range(3, 21, 2):
+        url = baseURL + str(i)
+        r = requests.get(url)
+        message = r.text
+        pyramid_list.append(message)
+    for i in range(20, 3, -2):
+        url = baseURL + str(i)
+        r = requests.get(url)
+        message = r.text
+        pyramid_list.append(message)
+        return pyramid_list
 
 
 def wunderground():

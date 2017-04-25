@@ -111,7 +111,7 @@ def super_asker(low, high):
                 print("Yeah! {} seems about right.".format(i_no))
             else:
                 print("{} is not between {} and {}".format(i_no, low, high))
-                return i_no
+            return i_no
         except Exception as e:
             print("Try again ({})".format(e))
 
