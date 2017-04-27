@@ -6,7 +6,7 @@ import math
 # import time
 
 
-def binary_search(low, high, actual_number):
+def binary_search(low, high, actual_number, tries=0):
     """Do a binary search.
 
     This is going to be your first 'algorithm' in the usual sense of the word!
@@ -27,24 +27,14 @@ def binary_search(low, high, actual_number):
       (You should remove them from the file, not comment them out, the
       tests aren't that smart yet.)
     """
-    def binarySearch(alist, item):
-        first = 0
-        last = len(alist)-1
-        found = False
-        while first <= last and not found:
-            midpoint = (first + last)//2
-            if alist[midpoint] == item:
-                found = True
-            else:
-                if item < alist[midpoint]:
-                    last = midpoint-1
-                else:
-                    first = midpoint+1
-                    return found
 
-    testlist = [0, 1, 2, 8, 13, 17, 19, 32, 42, ]
-    print(binarySearch(testlist, 3))
-    print(binarySearch(testlist, 13))
+    midpoint = (low + high) / 2
+    if actual_number == midpoint:
+        return {"guess": actual_number, "tries": tries}
+    elif midpoint < actual_number:
+        return binary_search(midpoint, high, actual_number, tries + 1)
+    elif midpoint > actual_number:
+        return binary_search(low, midpoint, high, actual_number, tries + 1)
 
 
 if __name__ == "__main__":

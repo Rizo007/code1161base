@@ -81,13 +81,15 @@ def stubborn_asker(low, high):
                                                                    high=high))
 
 
-def not_number_rejector(message):
+def not_number_rejector():
     """Ask for a number repeatedly until actually given one.
 
     Ask for a number, and if the response is actually NOT a number (e.g. "cow",
     "six", "8!") then throw it out and ask for an actual number.
     When you do get a number, return it.
     """
+    message = "welcome to the game"
+
     while True:
         try:
             i_no = int(raw_input(message))
@@ -104,16 +106,21 @@ def super_asker(low, high):
     that does it all!
     """
     message = "give me a number between {} and {}:".format(low, high)
+
     while True:
-        try:
-            i_no = int(raw_input(message))
-            if low < i_no < high:
-                print("Yeah! {} seems about right.".format(i_no))
-            else:
-                print("{} is not between {} and {}".format(i_no, low, high))
-            return i_no
-        except Exception as e:
-            print("Try again ({})".format(e))
+        while True:
+            try:
+                i_no = int(raw_input(message))
+                print("{} is a number".format(i_no))
+                if low < i_no < high:
+                    print("Yeah! {} seems about right.".format(i_no))
+                    return(i_no)
+                else:
+                    print("{} is not valid".format(i_no))
+            except Exception as e:
+                    print("Try again ({})".format(e))
+
+    return(i_no)
 
 
 if __name__ == "__main__":

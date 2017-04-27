@@ -28,9 +28,8 @@ def success_is_relative():
     mode = "r"
     file_path = CWD + "/week1/pySuccessMessage.json"
     book_of_success = open(file_path, mode)
-    contents = json.load(book_of_success)
-    in_message = contents("message")
-    print(in_message)
+    contents = book_of_success.read()
+    return contents.strip()
     book_of_success.close()
 
 
@@ -53,10 +52,12 @@ def get_some_details():
     json_data = open(LOCAL + "/lazyduck.json").read()
 
     data = json.loads(json_data)
-    data["result"][0]["name"]["last"]
-    return {"lastName":       None,
-            "password":       None,
-            "postcodePlusID": None
+    postcode = data["results"][0]["location"]["postcode"]
+    ID = data["results"][0]["id"]["value"]
+
+    return {"lastName":       data["results"][0]["name"]["last"],
+            "password":       data["results"][0]["login"]["password"],
+            "postcodePlusID": int(postcode) + int(ID)
             }
 
 
@@ -100,12 +101,13 @@ def wordy_pyramid():
         r = requests.get(url)
         message = r.text
         pyramid_list.append(message)
-    for i in range(20, 3, -2):
-        url = baseURL + str(i)
+    for j in range(20, 3, -2):
+        url = baseURL + str(j)
         r = requests.get(url)
         message = r.text
         pyramid_list.append(message)
-        return pyramid_list
+    print(pyramid_list)
+    return pyramid_list
 
 
 def wunderground():
