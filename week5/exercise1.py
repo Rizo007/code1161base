@@ -70,9 +70,14 @@ def countdown(message, start, stop, completion_message):
     count_down = start
     if count_down > stop:
         print(message, count_down)
-    while count_down > stop:
-        count_down = count_down - 1
+        while count_down > stop:
+            count_down = count_down - 1
+            print(message, count_down)
+    elif countdown < stop:
         print(message, count_down)
+        while count_down < stop:
+            count_down = count_down + 1
+            print(message, count_down)
     if count_down == stop:
         print(completion_message)
 
@@ -121,7 +126,7 @@ def calculate_perimeter(base, height):
     triangle = base**2 + height**2
     if triangle == int():
         triangle_hyp = int(triangle**0.5, 2)
-        print(triangle_hyp)
+        print(triangle_hyp + a)
         return(triangle_hyp + a)
 
 
@@ -249,7 +254,7 @@ def get_a_word_of_length_n(length):
     import requests
     baseURL = "http://www.setgetgo.com/randomword/get.php?len="
     word_gen = []
-    for i in range("{}"):
+    for i in range(input()):
         url = baseURL + str(i)
         r = requests.get(url)
         message = r.text
