@@ -68,6 +68,7 @@ def countdown(message, start, stop, completion_message):
     It should say something different in the last message.
     """
     count_down = start
+    countdown_list = []
     if count_down > stop:
         print(message, count_down)
         while count_down > stop:
@@ -79,7 +80,9 @@ def countdown(message, start, stop, completion_message):
             count_down = count_down + 1
             print(message, count_down)
     if count_down == stop:
-        print(completion_message)
+            print(completion_message)
+            countdown_list.append(message, count_down, completion_message)
+            return countdown_list
 
 
 # TRIANGLES
