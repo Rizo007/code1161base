@@ -12,7 +12,6 @@ import mock
 import os
 import random
 import sys
-sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from codeHelpers import completion_message
 from codeHelpers import ex_runs
 from codeHelpers import nyan_cat
@@ -20,6 +19,7 @@ from codeHelpers import syntax_error_message
 from codeHelpers import test
 from codeHelpers import test_flake8
 from codeHelpers import Timeout
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 WEEK_NUMBER = 3
 

@@ -81,22 +81,21 @@ def stubborn_asker(low, high):
                                                                    high=high))
 
 
-def not_number_rejector():
+def not_number_rejector(message):
     """Ask for a number repeatedly until actually given one.
 
     Ask for a number, and if the response is actually NOT a number (e.g. "cow",
     "six", "8!") then throw it out and ask for an actual number.
     When you do get a number, return it.
     """
-    message = "welcome to the game"
-
-    while True:
+    passed = False
+    while passed is False:
         try:
-            i_no = int(raw_input(message))
-            print("Thanks {} looks good.".format(i_no))
-            return i_no
-        except Exception as e:
-            print("Try again ({})".format(e))
+            i = int(raw_input(message))
+            passed = True
+        except Exception:
+            print("I need an actual number")
+    return i
 
 
 def super_asker(low, high):
