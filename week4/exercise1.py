@@ -150,7 +150,18 @@ def diarist():
     TIP: remember to commit 'lasers.pew' and push it to your repo, otherwise
          the test will have nothing to look at.
     """
-    pass
+    pathfile = 'week4/Trispokedovetiles(laser).gcode'
+    filed = open(pathfile, "r")
+    word = "M10 P1"
+    count = 0
+    for word in filed.read():
+        count += 1
+    filed.close
+    print(count)
+    a_pathfile = "/week4/lasers.pew"
+    laserfile = open(a_pathfile, "w")
+    laserfile.write(count)
+    laserfile.close()
 
 
 if __name__ == "__main__":
