@@ -36,28 +36,27 @@ def do_bunch_of_bad_things():
 
     The line is completely useless
     """
-    # print("Getting ready to start in 9")
-    # print("Getting ready to start in 8")
-    # print("Getting ready to start in 7")
-    # print("Getting ready to start in 6")
-    # print("Getting ready to start in 5")
-    # print("Getting ready to start in 4")
-    # print("Getting ready to start in 3")
-    # print("Getting ready to start in 2")
-    # print("Getting ready to start in 1")
-    # print("Let's go!")
-    #
-    # print("area = " + str((triangle["base"] * triangle["height"])/2))
-    # print("side lengths are:")
-    # print("base: {}".format(triangle["base"]))
-    # print("height: {}".format(triangle["height"]))
-    # print("hypotenuse: {}".format(triangle["hypotenuse"]))
-    #
-    # another_hyp = 5**2 + 6**2
-    # print(another_hyp)
-    #
-    # yet_another_hyp = 40**2 + 30**2
-    # print(yet_another_hyp)
+    print("Getting ready to start in 9")
+    print("Getting ready to start in 8")
+    print("Getting ready to start in 7")
+    print("Getting ready to start in 6")
+    print("Getting ready to start in 5")
+    print("Getting ready to start in 4")
+    print("Getting ready to start in 3")
+    print("Getting ready to start in 2")
+    print("Getting ready to start in 1")
+    print("Let's go!")
+    triangle = {"base": 3, "height": 4}
+    triangle["hypotenuse"] = triangle["base"]**2 + triangle["height"]**2
+    print("area = " + str((triangle["base"] * triangle["height"])/2))
+    print("side lengths are:")
+    print("base: {}".format(triangle["base"]))
+    print("height: {}".format(triangle["height"]))
+    print("hypotenuse: {}".format(triangle["hypotenuse"]))
+    another_hyp = 5**2 + 6**2
+    print(another_hyp)
+    yet_another_hyp = 40**2 + 30**2
+    print(yet_another_hyp)
 
 
 # return a list of countdown messages, much like in the bad function above.
@@ -67,22 +66,20 @@ def countdown(message, start, stop, completion_message):
 
     It should say something different in the last message.
     """
-    count_down = start
-    countdown_list = []
-    if count_down > stop:
-        print(message, count_down)
-        while count_down > stop:
-            count_down = count_down - 1
-            print(message, count_down)
-    elif countdown < stop:
-        print(message, count_down)
-        while count_down < stop:
-            count_down = count_down + 1
-            print(message, count_down)
-    if count_down == stop:
-            print(completion_message)
-            countdown_list.append(message, count_down, completion_message)
-            return countdown_list
+    reverse = False
+    if stop > start:
+        reverse = True
+    count = start
+    listed = []
+    while count not in (stop, -1):
+        line = message + "{}".format(count)
+        listed.append(line)
+        if reverse is True:
+            count += 1
+        else:
+            count -= 1
+    listed.append(completion_message)
+    return listed
 
 
 # TRIANGLES
@@ -123,21 +120,18 @@ def calculate_perimeter(base, height):
 
     Use the calculate_perimeter function to help you.
     """
-    if True:
-        a = base + height
-        print(a)
-    triangle = base**2 + height**2
-    if triangle == int():
-        triangle_hyp = int(triangle**0.5, 2)
-        print(triangle_hyp + a)
-        return(triangle_hyp + a)
+    perimeter = calculate_hypotenuse(base, height) + base + height
+    return(perimeter)
 
 
 def calculate_aspect(base, height):
-    """Return a line that calculates the area of a triangle.
-
-    Use the calculate_area function to help you.
-    """
+    """Return the triangle's aspect."""
+    if base == height:
+        return("equal")
+    elif base < height:
+        return("tall")
+    elif base > height:
+        return("wide")
 
 
 # Make sure you reuse the functions you've already got
@@ -147,13 +141,13 @@ def get_triangle_facts(base, height, units="mm"):
 
     Use the calculate_area function to help you.
     """
-    return {"area": None,
-            "perimeter": None,
-            "height": None,
-            "base": None,
-            "hypotenuse": None,
-            "aspect": None,
-            "units": None}
+    return {"area": calculate_area(base, height),
+            "perimeter": calculate_perimeter(base, height),
+            "height": height,
+            "base": base,
+            "hypotenuse": calculate_hypotenuse(base, height),
+            "aspect": calculate_aspect(base, height),
+            "units": units}
 
 
 # this should return a multi line string that looks a bit like this:
@@ -206,6 +200,13 @@ def tell_me_about_this_right_triangle(facts_dictionary):
                "This is a {aspect} triangle.\n")
 
     facts = pattern.format(**facts_dictionary)
+
+    if facts_dictionary["aspect"] == "tall":
+        return(tall.format(**facts_dictionary) + "\n" + facts)
+    elif facts_dictionary["aspects"] == "wide":
+        return(wide.format(**facts_dictionary) + "\n" + facts)
+    elif facts_dictionary["aspects"] == "equal":
+        return(equal.format(**facts_dictionary) + "\n" + facts)
 
 
 def triangle_master(base,
